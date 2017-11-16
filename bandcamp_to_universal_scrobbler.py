@@ -38,9 +38,10 @@ def parse(args):
     for line in filter_track_lines(tracks):
         track, time = line.rsplit(" ", 1)
         duration = time_to_seconds(time)
-        print('"{artist}", "{track}", "{album}", "", "", "{duration}"'.format(artist=artist, track=track, album=album, duration=duration))
+        yield '"{artist}", "{track}", "{album}", "", "", "{duration}"'.format(artist=artist, track=track, album=album, duration=duration)
 
 
 if __name__ == "__main__":
     arguments = docopt(__doc__, version="Bandcamp to Universal Scrobbler {}".format(__version__))
-    parse(arguments)
+    for line in parse(arguments):
+        print("{}".format(line))
