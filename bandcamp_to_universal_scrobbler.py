@@ -26,12 +26,16 @@ def time_to_seconds(t):
     split = t.split(":")
     return sum(c * t for c, t in zip(convert[-1 * len(split):], map(int, split)))
 
+def filter_track_lines(track_lines):
+    track_number_re = re.compile(r"^\d+\.$")
+    return ifilter(lambda line: line and track_number_re.search(line) is None, track_lines)
+
 def parse(args):
     artist = args.get("<artist>")
     album = args.get("<album>")
     tracks = args.get("<track-listing>").split("\n")
-    track_number_re = re.compile(r"^\d+\.$")
-    for line in ifilter(lambda line: line and track_number_re.match(line) is None, tracks):
+
+    for line in filter_track_lines(tracks):
         track, time = line.rsplit(" ", 1)
         duration = time_to_seconds(time)
         print('"{artist}", "{track}", "{album}", "", "", "{duration}"'.format(artist=artist, track=track, album=album, duration=duration))
