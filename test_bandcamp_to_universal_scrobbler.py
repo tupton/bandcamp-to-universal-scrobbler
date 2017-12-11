@@ -1,15 +1,6 @@
-from bandcamp_to_universal_scrobbler import time_to_seconds, filter_track_lines, parse
+from bandcamp_to_universal_scrobbler import filter_track_lines, parse
 
 import nose.tools as tools
-
-def test_empty_time_to_seconds():
-    tools.eq_(0, time_to_seconds(''))
-    tools.eq_(0, time_to_seconds(None))
-
-def test_time_to_seconds():
-    tools.eq_(264, time_to_seconds("04:24"))
-
-    tools.eq_(3600, time_to_seconds("1:00:00"))
 
 def test_empty_filter_track_lines():
     tools.eq_(0, sum(1 for _ in filter_track_lines([])))
