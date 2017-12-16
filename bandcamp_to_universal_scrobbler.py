@@ -4,19 +4,22 @@
 Convert a Bandcamp track listing to a CSV that can be used with Universal Scrobbler's bulk import.
 
 Usage:
-    bandcamp-to-universal-scrobbler.py <artist> <album> <track-listing>
+    bandcamp-to-universal-scrobbler.py [--start-time=<start-time>] <artist> <album> <track-listing>
 
-    artist        The artist as a string
-    album         The album name as a string
-    track-listing The copied track listing from a Bandcamp page
+    artist                    The artist as a string
+    album                     The album name as a string
+    track-listing             The copied track listing from a Bandcamp page
+    --start-time=<start-time> A time string to indicate the timestamp of the first track
 """
 
 from __future__ import print_function
 
-from itertools import ifilter
 from docopt import docopt
-from _util import time_to_seconds
 import re
+import sys
+from datetime import datetime
+from itertools import ifilter
+from _util import time_to_seconds, parse_to_unix_time
 
 __version__ = "0.1.0"
 
@@ -29,10 +32,25 @@ def parse(args):
     album = args.get("<album>")
     tracks = args.get("<track-listing>").split("\n")
 
+    try:
+        start_time = parse_to_unix_time(args.get("--start-time"))
+        track_start = start_time
+    except (ValueError, TypeError):
+        start_time = None
+        track_start = 0
+    prev_duration = 0
+
     for line in filter_track_lines(tracks):
         track, time = line.rsplit(" ", 1)
+        if start_time is None:
+            ts = ""
+        else:
+            track_start = track_start + prev_duration
+            ts = datetime.fromtimestamp(track_start)
         duration = time_to_seconds(time)
-        yield '"{artist}", "{track}", "{album}", "", "", "{duration}"'.format(artist=artist, track=track, album=album, duration=duration)
+        prev_duration = duration
+
+        yield '"{artist}", "{track}", "{album}", "{ts}", "", "{duration}"'.format(artist=artist, track=track, album=album, ts=ts, duration=duration)
 
 
 if __name__ == "__main__":
