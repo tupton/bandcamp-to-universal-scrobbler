@@ -25,7 +25,7 @@ __version__ = "0.1.0"
 
 def filter_track_lines(track_lines):
     track_number_re = re.compile(r"^\d+\.$")
-    return ifilter(lambda line: line and track_number_re.search(line) is None and line.strip().lower() != "lyrics" and line.strip().lower() != "buy track", track_lines)
+    return ifilter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and line.strip().lower() != "lyrics" and line.strip().lower() != "buy track", track_lines)
 
 def parse(args):
     artist = args.get("<artist>")

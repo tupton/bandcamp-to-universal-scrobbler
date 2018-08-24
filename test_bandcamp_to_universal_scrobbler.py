@@ -25,6 +25,24 @@ Weight Of The Word 06:29
     filter_iter = filter_track_lines(lines.split("\n"))
     tools.eq_(7, sum(1 for _ in filter_iter))
 
+    # filter empty line and no track number at start of input
+    lines="""
+Tribulation 01:35
+2.
+To Ruin A Fine Tenor Voice 03:27
+lyrics
+3.
+Concrete Blocks of Empathy 05:08
+4.
+Careworn 06:01
+5.
+Entr'acte 04:23
+6.
+We Have Not Reached Conclusion 03:45
+"""
+    filter_iter = filter_track_lines(lines.split("\n"))
+    tools.eq_(6, sum(1 for _ in filter_iter))
+
 def test_parse():
     args = {
         "<artist>": "Frequency Eater",
