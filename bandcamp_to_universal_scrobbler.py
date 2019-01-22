@@ -23,9 +23,14 @@ from _util import time_to_seconds, parse_to_unix_time
 
 __version__ = "0.1.0"
 
+def _filter_detritus(track_line):
+    clean = track_line.strip().lower()
+    disallowed = {'lyrics', 'buy track', 'info', 'video'}
+    return clean not in disallowed;
+
 def filter_track_lines(track_lines):
     track_number_re = re.compile(r"^\d+\.$")
-    return ifilter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and line.strip().lower() != "lyrics" and line.strip().lower() != "buy track", track_lines)
+    return ifilter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and _filter_detritus(line), track_lines)
 
 def parse(args):
     artist = args.get("<artist>")
@@ -42,6 +47,11 @@ def parse(args):
 
     for line in filter_track_lines(tracks):
         track, time = line.rsplit(" ", 1)
+
+        # Sometimes the track line has cruft at the end, e.g. "video"
+        if not _filter_detritus(time):
+            track, time = track.rsplit(" ", 1)
+
         if start_time is None:
             ts = ""
         else:
