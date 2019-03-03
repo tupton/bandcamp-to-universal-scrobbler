@@ -13,12 +13,15 @@ Usage:
 """
 
 from __future__ import print_function
+try:
+    from future_builtins import filter
+except ImportError:
+    pass
 
 from docopt import docopt
 import re
 import sys
 from datetime import datetime
-from itertools import ifilter
 from _util import time_to_seconds, parse_to_unix_time
 
 __version__ = "0.1.0"
@@ -30,7 +33,7 @@ def _filter_detritus(track_line):
 
 def filter_track_lines(track_lines):
     track_number_re = re.compile(r"^\d+\.$")
-    return ifilter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and _filter_detritus(line), track_lines)
+    return filter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and _filter_detritus(line), track_lines)
 
 def parse(args):
     artist = args.get("<artist>")
