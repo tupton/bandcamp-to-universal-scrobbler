@@ -7,7 +7,7 @@ defaults: &defaultsteps
         command: |
           export LOCAL="/home/circleci/.local"
           export PATH="$LOCAL/bin:$PATH"
-          pip install -r requirements.txt --user
+          pip install -r requirements.txt -r dev-requirements.txt --user
     - run:
         name: Test
         command: |
