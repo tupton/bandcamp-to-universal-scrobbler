@@ -1,5 +1,7 @@
 # Bandcamp to Universal Scrobbler
 
+[![CircleCI Build Status](https://circleci.com/gh/tupton/bandcamp-to-universal-scrobbler/tree/master.svg?style=svg)](https://circleci.com/gh/tupton/bandcamp-to-universal-scrobbler/tree/master)
+
 Convert a copied track listing from [a Bandcamp release page][bc] to a CSV that can be used in [Universal Scrobbler's bulk scrobbler][us].
 
   [bc]: https://aviatorma.bandcamp.com/album/loneliness-leaves-the-light-on-for-me
