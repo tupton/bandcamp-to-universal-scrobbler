@@ -19,5 +19,5 @@ def unix_time(dt):
 
 tzinfos = {"CST": gettz("America/Chicago")}
 def parse_to_unix_time(s):
-    dt = parse('{}'.format(s), tzinfos=tzinfos)
+    dt = parse('{} CST'.format(s), tzinfos=tzinfos)
     return unix_time(dt)

@@ -70,6 +70,5 @@ def parse(args):
 
 if __name__ == "__main__":
     arguments = docopt(__doc__, version="Bandcamp to Universal Scrobbler {}".format(__version__))
-    print(arguments)
     for line in parse(arguments):
         print("{}".format(line))
