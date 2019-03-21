@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from dateutil.tz import gettz
 import pytz
 
+
 def time_to_seconds(t):
     if not t:
         return 0
@@ -18,5 +19,5 @@ def unix_time(dt):
 
 tzinfos = {"CST": gettz("America/Chicago")}
 def parse_to_unix_time(s):
-    dt = parse('{} CST'.format(s), tzinfos=tzinfos)
+    dt = parse('{}'.format(s), tzinfos=tzinfos)
     return unix_time(dt)

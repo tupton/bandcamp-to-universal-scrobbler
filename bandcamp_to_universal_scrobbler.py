@@ -4,12 +4,15 @@
 Convert a Bandcamp track listing to a CSV that can be used with Universal Scrobbler's bulk import.
 
 Usage:
-    bandcamp-to-universal-scrobbler.py [--start-time=<start-time>] <artist> <album> <track-listing>
+    bandcamp-to-universal-scrobbler.py <artist> <album> <track-listing> [--start-time=<s>]
 
-    artist                    The artist as a string
-    album                     The album name as a string
-    track-listing             The copied track listing from a Bandcamp page
-    --start-time=<start-time> A time string to indicate the timestamp of the first track
+Arguments:
+    artist            The artist as a string
+    album             The album name as a string
+    track-listing     The copied track listing from a Bandcamp page
+
+Options:
+    --start-time=<s>  A time string to indicate the timestamp of the first track
 """
 
 from __future__ import print_function
@@ -20,7 +23,6 @@ except ImportError:
 
 from docopt import docopt
 import re
-import sys
 from datetime import datetime
 from _util import time_to_seconds, parse_to_unix_time
 
@@ -29,7 +31,7 @@ __version__ = "0.1.0"
 def _filter_detritus(track_line):
     clean = track_line.strip().lower()
     disallowed = {'lyrics', 'buy track', 'info', 'video'}
-    return clean not in disallowed;
+    return clean not in disallowed
 
 def filter_track_lines(track_lines):
     track_number_re = re.compile(r"^\d+\.$")
@@ -68,5 +70,6 @@ def parse(args):
 
 if __name__ == "__main__":
     arguments = docopt(__doc__, version="Bandcamp to Universal Scrobbler {}".format(__version__))
+    print(arguments)
     for line in parse(arguments):
         print("{}".format(line))

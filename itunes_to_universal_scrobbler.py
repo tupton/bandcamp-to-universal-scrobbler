@@ -4,17 +4,16 @@
 Convert an iTunes copied playlist to a CSV that can be used with Universal Scrobbler's bulk import.
 
 Usage:
-    itunes-to-universal-scrobbler.py [--start-time=<start-time>] <playlist>
+    itunes-to-universal-scrobbler.py <playlist> [--start-time=<s>]
 
-    playlist                  The copied playlist entries from iTunes
-    --start-time=<start-time> A time string to indicate the timestamp of the first track
+    playlist          The copied playlist entries from iTunes
+    --start-time=<s>  A time string to indicate the timestamp of the first track
 """
 
 from __future__ import print_function
 
 from docopt import docopt
 import re
-import sys
 from datetime import datetime
 from _util import time_to_seconds, parse_to_unix_time
 
