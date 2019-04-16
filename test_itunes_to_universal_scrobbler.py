@@ -63,7 +63,7 @@ Freedom		3:01	Bib	Moshpit - EP	Alternative	0
     tools.eq_(expected, "\n".join(line for line in parse(args)))
 
     args = {
-        "--start-time": "2019-03-21 15:35",
+        "--start-time": "2019-03-21 15:35 GMT",
         "<playlist>": """Syllogism		1:20	Venom Prison	Animus	Death Metal/Black Metal	0			2019-03-20, 16:13
 Abysmal Agony		2:59	Venom Prison	Animus	Death Metal/Black Metal	0			2019-03-20, 16:13
 Celestial Patricide		4:02	Venom Prison	Animus	Death Metal/Black Metal	0			2019-03-20, 16:13
@@ -78,16 +78,16 @@ Womb Forced Animus		4:59	Venom Prison	Animus	Death Metal/Black Metal	0			2019-03
     }
 
     expected = """
-"Venom Prison", "Syllogism", "Animus", "2019-03-21 15:35:00", "", "80"
-"Venom Prison", "Abysmal Agony", "Animus", "2019-03-21 15:36:20", "", "179"
-"Venom Prison", "Celestial Patricide", "Animus", "2019-03-21 15:39:19", "", "242"
-"Venom Prison", "Desecration of Human Privilege", "Animus", "2019-03-21 15:43:21", "", "124"
-"Venom Prison", "Corrode the Black Sun", "Animus", "2019-03-21 15:45:25", "", "279"
-"Venom Prison", "Immanetize Eschaton", "Animus", "2019-03-21 15:50:04", "", "289"
-"Venom Prison", "The Exquisite Taste of Selfishness", "Animus", "2019-03-21 15:54:53", "", "189"
-"Venom Prison", "Devoid", "Animus", "2019-03-21 15:58:02", "", "218"
-"Venom Prison", "Perpetrator Emasculation", "Animus", "2019-03-21 16:01:40", "", "93"
-"Venom Prison", "Womb Forced Animus", "Animus", "2019-03-21 16:03:13", "", "299"
+"Venom Prison", "Syllogism", "Animus", "2019-03-21 10:35:00", "", "80"
+"Venom Prison", "Abysmal Agony", "Animus", "2019-03-21 10:36:20", "", "179"
+"Venom Prison", "Celestial Patricide", "Animus", "2019-03-21 10:39:19", "", "242"
+"Venom Prison", "Desecration of Human Privilege", "Animus", "2019-03-21 10:43:21", "", "124"
+"Venom Prison", "Corrode the Black Sun", "Animus", "2019-03-21 10:45:25", "", "279"
+"Venom Prison", "Immanetize Eschaton", "Animus", "2019-03-21 10:50:04", "", "289"
+"Venom Prison", "The Exquisite Taste of Selfishness", "Animus", "2019-03-21 10:54:53", "", "189"
+"Venom Prison", "Devoid", "Animus", "2019-03-21 10:58:02", "", "218"
+"Venom Prison", "Perpetrator Emasculation", "Animus", "2019-03-21 11:01:40", "", "93"
+"Venom Prison", "Womb Forced Animus", "Animus", "2019-03-21 11:03:13", "", "299"
 """.strip()
 
     tools.eq_(expected, "\n".join(line for line in parse(args)))

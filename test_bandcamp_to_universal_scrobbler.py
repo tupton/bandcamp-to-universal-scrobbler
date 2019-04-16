@@ -121,7 +121,7 @@ Indigenous Sovereignty 02:11
     tools.eq_(expected, "\n".join(line for line in parse(args)))
 
     args = {
-        "--start-time": "2019-03-21 15:24",
+        "--start-time": "2019-03-21 15:24 GMT",
         "<album>": "The Outer Dark",
         "<artist>": "Anodyne",
         "<track-listing>": """
@@ -145,14 +145,14 @@ Like Water in Water 02:15
     }
 
     expected = """
-"Anodyne", "Lucky Sky Diamond", "The Outer Dark", "2019-03-21 15:24:00", "", "160"
-"Anodyne", "Form is Emptiness", "The Outer Dark", "2019-03-21 15:26:40", "", "181"
-"Anodyne", "Tenderness of Wolves", "The Outer Dark", "2019-03-21 15:29:41", "", "274"
-"Anodyne", "Knives", "The Outer Dark", "2019-03-21 15:34:15", "", "220"
-"Anodyne", "Black Pearl", "The Outer Dark", "2019-03-21 15:37:55", "", "135"
-"Anodyne", "Our Lady of Assasins", "The Outer Dark", "2019-03-21 15:40:10", "", "171"
-"Anodyne", "Finest Craftsman", "The Outer Dark", "2019-03-21 15:43:01", "", "116"
-"Anodyne", "Like Water in Water", "The Outer Dark", "2019-03-21 15:44:57", "", "135"
+"Anodyne", "Lucky Sky Diamond", "The Outer Dark", "2019-03-21 10:24:00", "", "160"
+"Anodyne", "Form is Emptiness", "The Outer Dark", "2019-03-21 10:26:40", "", "181"
+"Anodyne", "Tenderness of Wolves", "The Outer Dark", "2019-03-21 10:29:41", "", "274"
+"Anodyne", "Knives", "The Outer Dark", "2019-03-21 10:34:15", "", "220"
+"Anodyne", "Black Pearl", "The Outer Dark", "2019-03-21 10:37:55", "", "135"
+"Anodyne", "Our Lady of Assasins", "The Outer Dark", "2019-03-21 10:40:10", "", "171"
+"Anodyne", "Finest Craftsman", "The Outer Dark", "2019-03-21 10:43:01", "", "116"
+"Anodyne", "Like Water in Water", "The Outer Dark", "2019-03-21 10:44:57", "", "135"
 """.strip()
 
     tools.eq_(expected, "\n".join(line for line in parse(args)))
