@@ -5,7 +5,7 @@ import pytz
 
 
 def time_to_seconds(t):
-    if not t:
+    if not t or not is_time_string(t):
         return 0
     convert = [3600, 60, 1]
     split = t.split(":")
@@ -19,7 +19,14 @@ def unix_time(dt):
 
 tzinfos = {"CST": gettz("America/Chicago")}
 def parse_to_unix_time(s):
-    dt = parse('{}'.format(s), tzinfos=tzinfos)
+    dt = parse(s, tzinfos=tzinfos)
     if (dt.tzname() is None):
         dt = parse('{} CST'.format(s), tzinfos=tzinfos)
     return unix_time(dt)
+
+def is_time_string(maybe_time):
+    try:
+        parse(maybe_time)
+        return True
+    except ValueError:
+        return False

@@ -51,7 +51,10 @@ def parse(args):
     prev_duration = 0
 
     for line in filter_track_lines(tracks):
-        track, time = line.rsplit(" ", 1)
+        try:
+            track, time = line.rsplit(" ", 1)
+        except ValueError:
+            track = line
 
         # Sometimes the track line has cruft at the end, e.g. "video"
         if not _filter_detritus(time):
