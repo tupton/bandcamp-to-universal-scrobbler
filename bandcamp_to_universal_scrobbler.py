@@ -34,7 +34,7 @@ def _filter_detritus(track_line):
     return clean not in disallowed
 
 def filter_track_lines(track_lines):
-    track_number_re = re.compile(r"^\d+\.$")
+    track_number_re = re.compile(r"^\d*\.$")
     return filter(lambda line: line and line.strip() != "" and track_number_re.search(line) is None and _filter_detritus(line), track_lines)
 
 def parse(args):
